@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario Pasillo 9 | Cecosesola</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="pasillo.css">
+</head>
+
+<body class="pasillo-body">
+    <div class="background-glow"></div>
+
+    <div class="pasillo-wrapper">
+        <header class="pasillo-header">
+            <div class="header-left">
+                <div class="header-info">
+                    <span class="company-tag">CECOSESOLA J085030140</span>
+                    <span class="date-tag" id="current-date">FECHA: --/--/----</span>
+                </div>
+                <div class="header-main">
+                    <h1 class="aisle-title">â˜…-PASILLO GRANOS-â˜…</h1>
+                    <p class="brand-name">FERIA DEL ESTE</p>
+                </div>
+            </div>
+            <div class="teams-container">
+                <div class="team-card team-1">
+                    <header>EQUIPO DE TRABAJO</header>
+                    <div class="resp">RESPONSABLE: <strong id="team1-resp1">CARGANDO...</strong></div>
+                    <div class="resp">COMPAÃ‘ERO: <strong id="team1-resp2">CARGANDO...</strong></div>
+                </div>
+            </div>
+        </header>
+
+        <section class="actions-bar">
+            <div class="search-container">
+                <span class="search-icon">ðŸ”</span>
+                <input type="text" placeholder="Escribe para buscar producto..." id="productSearch">
+            </div>
+            <div class="btn-group">
+                <button class="icon-btn trash" id="clearBtn"><span class="icon">ðŸ—‘ï¸</span></button>
+                <button class="icon-btn blue" id="helperBtn"><span class="icon">ðŸ‘¥</span></button>
+                <button class="action-btn purple">+ Agregar</button>
+                <button class="action-btn green" id="downloadBtn">ðŸ’¾ Descargar</button>
+            </div>
+        </section>
+
+        <main class="inventory-table-container">
+            <table class="inventory-table">
+                <thead>
+                    <tr>
+                        <th class="col-product">PRODUCTO / CHECKLIST</th>
+                        <th class="col-qty">CANTIDAD</th>
+                    </tr>
+                </thead>
+                <tbody id="inventory-body">
+                    <!-- Products will be injected here -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <!-- Calculator Modal -->
+    <div id="calcModal" class="modal">
+        <div class="modal-content calculator-modal">
+            <header class="calc-header">
+                <span class="calc-menu">â‰¡</span>
+                <h3 id="calc-product-name">ACEITE DE OLIVA 250ML</h3>
+            </header>
+            <div class="calc-display-container">
+                <div class="calc-history" id="calcHistory"></div>
+                <div class="calc-result" id="calcResult">0</div>
+            </div>
+            <div class="calc-grid">
+                <button class="calc-btn gray" data-op="%">%</button>
+                <button class="calc-btn gray" data-op="CE">CE</button>
+                <button class="calc-btn gray" data-op="C">C</button>
+                <button class="calc-btn gray" data-op="DEL">âŒ«</button>
+
+                <button class="calc-btn gray">1/x</button>
+                <button class="calc-btn gray">xÂ²</button>
+                <button class="calc-btn gray">âˆšx</button>
+                <button class="calc-btn gray" data-op="/">Ã·</button>
+
+                <button class="calc-btn num">7</button>
+                <button class="calc-btn num">8</button>
+                <button class="calc-btn num">9</button>
+                <button class="calc-btn gray" data-op="*">Ã—</button>
+
+                <button class="calc-btn num">4</button>
+                <button class="calc-btn num">5</button>
+                <button class="calc-btn num">6</button>
+                <button class="calc-btn gray" data-op="-">âˆ’</button>
+
+                <button class="calc-btn num">1</button>
+                <button class="calc-btn num">2</button>
+                <button class="calc-btn num">3</button>
+                <button class="calc-btn gray" data-op="+">+</button>
+
+                <button class="calc-btn gray">Â±</button>
+                <button class="calc-btn num">0</button>
+                <button class="calc-btn gray">,</button>
+                <button class="calc-btn blue" data-op="=">=</button>
+            </div>
+            <div class="calc-footer">
+                <button class="btn-cancel" id="calcCancel">CANCELAR</button>
+                <button class="btn-save" id="calcSave">GUARDAR</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.0/package/dist/xlsx.full.min.js"></script>
+    <script src="pasillo.js"></script>
+</body>
+
+</html>
