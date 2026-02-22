@@ -1,7 +1,7 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
     const displayName = document.getElementById('display-name');
 
-    // Recuperar datos del localStorage
+    // Recuperar datos del usuario
     const name = localStorage.getItem('userName');
     const lastName = localStorage.getItem('userLastName');
 
@@ -9,11 +9,51 @@
         displayName.textContent = `${name} ${lastName || ''}`;
     }
 
-    // AnimaciÃ³n secuencial de las tarjetas
+    // --- LÓGICA DE PUBLICACIÓN DE NOMBRES ---
+    const publishedStaff = JSON.parse(localStorage.getItem('publishedStaff')) || {};
+
+    // Animación secuencial de las tarjetas y asignación de nombres
     const cards = document.querySelectorAll('.map-card');
     cards.forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
+
+        // Buscar si este pasillo tiene personal asignado
+        const cardTextEl = card.querySelector('.card-text');
+        if (cardTextEl) {
+            const originalTitle = cardTextEl.textContent.trim().toUpperCase();
+
+            // Buscar coincidencia exacta o parcial
+            for (const areaTitle in publishedStaff) {
+                const upperArea = areaTitle.toUpperCase();
+                // Coincidencia si el título del mapa contiene el área o viceversa
+                if (originalTitle.includes(upperArea) || upperArea.includes(originalTitle) ||
+                    (originalTitle.includes("PASTAS") && upperArea.includes("PASTA"))) {
+
+                    const staffNames = publishedStaff[areaTitle];
+                    if (staffNames && staffNames.trim() !== "") {
+                        const nameBadge = document.createElement('div');
+                        nameBadge.className = 'staff-badge';
+                        nameBadge.textContent = staffNames;
+
+                        // Estilos para que se vea pequeño y elegante
+                        Object.assign(nameBadge.style, {
+                            fontSize: '0.65rem',
+                            marginTop: '8px',
+                            color: '#7fbb00',
+                            fontWeight: '600',
+                            textTransform: 'uppercase',
+                            opacity: '0.9',
+                            lineHeight: '1.2',
+                            padding: '0 5px'
+                        });
+
+                        card.appendChild(nameBadge);
+                    }
+                    break;
+                }
+            }
+        }
 
         setTimeout(() => {
             card.style.transition = 'all 0.5s ease-out';
@@ -22,7 +62,7 @@
         }, 100 * index);
     });
 
-    // Efecto de mouse para el fondo (mismo que el login)
+    // Efecto de mouse para el fondo
     document.addEventListener('mousemove', (e) => {
         const x = (e.clientX / window.innerWidth) * 100;
         const y = (e.clientY / window.innerHeight) * 100;
@@ -30,8 +70,8 @@
         const background = document.querySelector('.background-glow');
         if (background) {
             background.style.background = `
-                radial-gradient(circle at ${x}% ${y}%, rgba(138, 43, 226, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at ${100 - x}% ${100 - y}%, rgba(0, 210, 255, 0.1) 0%, transparent 40%)
+                radial-gradient(circle at ${x}% ${y}%, rgba(60, 161, 227, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at ${100 - x}% ${100 - y}%, rgba(127, 187, 0, 0.1) 0%, transparent 40%)
             `;
         }
     });
