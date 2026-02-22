@@ -1,15 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     const displayName = document.getElementById('display-name');
 
-    // Recuperar datos del sessionStorage
-    const name = sessionStorage.getItem('userName');
-    const lastName = sessionStorage.getItem('userLastName');
+    // Recuperar datos del localStorage
+    const name = localStorage.getItem('userName');
+    const lastName = localStorage.getItem('userLastName');
 
     if (name) {
         displayName.textContent = `${name} ${lastName || ''}`;
     }
 
-    // Animación secuencial de las tarjetas
+    // AnimaciÃ³n secuencial de las tarjetas
     const cards = document.querySelectorAll('.map-card');
     cards.forEach((card, index) => {
         card.style.opacity = '0';

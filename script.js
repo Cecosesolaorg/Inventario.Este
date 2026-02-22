@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('loginForm');
     const submitBtn = document.getElementById('submitBtn');
 
@@ -9,13 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const companero = document.getElementById('companero').value.trim();
 
         if (responsable && companero) {
-            // Guardar nombres para las siguientes páginas
-            sessionStorage.setItem('userName', responsable);
-            sessionStorage.setItem('userLastName', ""); // Resetting this
-            sessionStorage.setItem('responsableDirecto', responsable);
-            sessionStorage.setItem('companero', companero);
+            // Guardar nombres para las siguientes pÃ¡ginas
+            localStorage.setItem('userName', responsable);
+            localStorage.setItem('userLastName', ""); // Resetting this
+            localStorage.setItem('responsableDirecto', responsable);
+            localStorage.setItem('companero', companero);
 
-            // Animación de carga simulada
+            // AnimaciÃ³n de carga simulada
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span>Procesando...</span>';
 
